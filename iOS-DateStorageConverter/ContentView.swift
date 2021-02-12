@@ -9,29 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var name: String = ""
-    
-    @State private var feeling: String = ""
-    
-    private var greeting: String {
-        return "Hello, \(name), you are \(feeling)"
+   //MARK: stored properties
+    @State private var input: String = ""
+
+    //MARK: computed properties
+    private var output: String {
+        return "You typed in \(input)"
     }
+    
     var body: some View {
         
-        VStack {
+        Form {
             
-            TextField("What is your name", text: $name)
+            TextField("e.g.: 1024", text: $input)
+                .keyboardType(.numberPad)
             
-            Picker("Mood", selection: $feeling) {
-                Text("🥳").tag("happy")
-                Text("😕").tag("fine")
-                Text("🙁").tag("Sad")
-            }
-            .pickerStyle(SegmentedPickerStyle())
-                .padding()
-            
-            Text(greeting)
-                .padding()
+            Text(output)
         }
        
     }
