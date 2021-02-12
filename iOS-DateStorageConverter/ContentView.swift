@@ -11,14 +11,24 @@ struct ContentView: View {
     
     @State private var name: String = ""
     
+    @State private var feeling: String = ""
+    
     private var greeting: String {
-        return "Hello, \(name)"
+        return "Hello, \(name), you are \(feeling)"
     }
     var body: some View {
         
         VStack {
             
             TextField("What is your name", text: $name)
+            
+            Picker("Mood", selection: $feeling) {
+                Text("🥳").tag("happy")
+                Text("😕").tag("fine")
+                Text("🙁").tag("Sad")
+            }
+            .pickerStyle(SegmentedPickerStyle())
+                .padding()
             
             Text(greeting)
                 .padding()
